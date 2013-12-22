@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <string.h>
 #include "include/todo_io/todocmd.h"
+#include "include/todo_logic/sort.h"
 #include "include/debug/debug.h"
 
 int main(int argc, char *argv[])
@@ -17,9 +18,6 @@ int main(int argc, char *argv[])
 			/* Create cmd_obj, Execute Command */
 			create_command(argc, argv);
 	}
-
-	/* TODO: Create Sorting Function */
-	//sort();
 
         exit(EXIT_SUCCESS);
 }

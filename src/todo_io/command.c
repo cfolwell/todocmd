@@ -41,6 +41,6 @@ void command_executor(cmd_obj *cmd)
 			break;
 		default:
 			printf("[TODOCMD] ERROR: command not found\n");
-			exit(EXIT_SUCCESS);
+			break;
 	}
 }

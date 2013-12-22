@@ -23,6 +23,9 @@ void todo_add(cmd_obj *cmd)
 	todo_file = fopen(cmd->todo_filename, "a");
 	assert(todo_file);
 
+	/* Write todo status indicator to todo_file */
+	fputs("[ ] ", todo_file);
+
 	/* Write todo_body to todo_file */
 	for(i = 0; i < cmd->arg_cnt; i++) {
 		if(cmd->todo->todo_body[i]) {
@@ -64,6 +67,45 @@ void todo_add(cmd_obj *cmd)
 	#ifdef DEBUG
 	prt_info(3, "todo_add");
 	#endif
+}
 
-	exit(EXIT_SUCCESS);
+void todo_done(cmd_obj *cmd)
+{
+	FILE *todo_file;
+	FILE *tmp_file;
+	char buffer[MAX_ARGS];
+	int ln = atoi(cmd->todo->todo_body[0]);
+	int cnt = 0;
+	int i = 0;
+
+	todo_file = fopen(cmd->todo_filename, "r");
+	tmp_file = fopen("tmp.txt", "w");
+
+	while((i = fgets(buffer, sizeof(buffer), todo_file) != NULL)) {
+		if(i == 1) cnt++;
+
+		/* Write to tmp.txt or done.txt */
+		if(cnt != ln) {
+			fprintf(tmp_file, "%s", buffer);
+		} else {
+			buffer[1] = 'x';
+			fprintf(tmp_file, "%s", buffer);
+		}
+	}
+
+	/* Reopen Files Change r<->w */
+	fclose(todo_file);
+	fclose(tmp_file);
+	todo_file = fopen(cmd->todo_filename, "w");
+	tmp_file = fopen("tmp.txt", "r");
+
+	while((i = fgets(buffer, sizeof(buffer), tmp_file) != NULL)) {
+		fprintf(todo_file, "%s", buffer);
+	}
+
+	/* Memory Management */
+	fclose(todo_file);
+	fclose(tmp_file);
+	free(cmd->todo);
+	free(cmd);
 }

@@ -8,7 +8,6 @@
 void todo_add(cmd_obj *cmd);
 
 /* File Output Functions */
-int get_id(char *filename);
 void todo_list(cmd_obj *cmd);
 void todo_done(cmd_obj *cmd);
 void todo_remove(cmd_obj *cmd);

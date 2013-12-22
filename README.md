@@ -5,9 +5,9 @@ __todocmd__ is a command-line based todo application written in C. It learns you
 ### Installation ###
 ### Commands ###
 ##### Basic IO Commands: #####
-- __Creating a todo:__ `todocmd -a <todo>`
-- __Completing a todo:__ `todocmd -c <index>`
-- __Removing a todo:__ `todocmd -r <index>`
+- __Adding a todo:__ `todocmd -a <todo>`
+- __Archiving a todo:__ `todocmd -d <index>`
+- __Deleting a todo:__ `todocmd -r <index>`
 
 ##### Todo Metadata Commands: #####
 - __Adding a priority:__ append `-p <priority>` on todo creation
@@ -15,9 +15,9 @@ __todocmd__ is a command-line based todo application written in C. It learns you
 - _**NOTICE:** ORDER OF PRIORITY AND TAG COMMANDS DOES NOT MATTER_
  
 ##### Listing Commands #####
-- __List todos (default):__ `todocmd -l`
-- __List todos (by priority):__
-- __List todo (by tag):__
+- __Listing todos (default):__ `todocmd -l`
+- __Listing todos (by priority):__
+- __Listing todo (by tag):__
  
 # Contributing #
 
