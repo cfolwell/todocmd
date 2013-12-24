@@ -16,10 +16,18 @@ void create_command(int argc, char *argv[])
 	cmd->arg_cnt = argc-2;
 	cmd->todo = create_todo(cmd->arg_cnt, argv, cmd->todo_filename);
 
-	command_executor(cmd);
+	if(argv[1][2] != '\0') {
+		cmd->sub_command = argv[1][2];
+	} else {
+		cmd->sub_command = '\0';
+	}
+
+	command_handler(cmd);
+
+	exit(EXIT_SUCCESS);
 }
 
-void command_executor(cmd_obj *cmd)
+void command_handler(cmd_obj *cmd)
 {
 
 	/* Execute Commands */
@@ -27,11 +35,12 @@ void command_executor(cmd_obj *cmd)
 		case 'a':
 			todo_add(cmd);
 			break;
+		case 'c':
 		case 'd':
 			todo_done(cmd);
 			break;
 		case 'l':
-			todo_list(cmd);
+			todo_list_handler(cmd);
 			break;
 		case 'r':
 			todo_remove(cmd);
@@ -43,4 +52,6 @@ void command_executor(cmd_obj *cmd)
 			printf("[TODOCMD] ERROR: command not found\n");
 			break;
 	}
+
+	exit(EXIT_SUCCESS);
 }

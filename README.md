@@ -6,7 +6,7 @@ __todocmd__ is a command-line based todo application written in C. It learns you
 ### Commands ###
 ##### Basic IO Commands: #####
 - __Adding a todo:__ `todocmd -a <todo>`
-- __Archiving a todo:__ `todocmd -d <index>`
+- __Completing a todo:__ `todocmd -d <index>` or `todocmd -c <index>`
 - __Deleting a todo:__ `todocmd -r <index>`
 
 ##### Todo Metadata Commands: #####

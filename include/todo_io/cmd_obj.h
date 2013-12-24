@@ -10,12 +10,13 @@
 typedef struct {
 	todo_obj *todo;
 	char command;
+	char sub_command;
 	char *todo_filename;
 	char *done_filename;
 	int arg_cnt;
 } cmd_obj;
 
 void create_command(int argc, char *argv[]);
-void command_executor(cmd_obj *cmd);
+void command_handler(cmd_obj *cmd);
 
 #endif
